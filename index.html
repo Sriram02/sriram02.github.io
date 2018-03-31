@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Theatres</title>
+	<!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="test.css">
+	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<script src="bower_components/d3/d3.min.js"></script>
+	<script src="bower_components/topojson/topojson.min.js"></script>
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/lodash/dist/lodash.min.js"></script>
+	<script src="bower_components/jsutils/dist/util.js"></script>
+	<script src="map.js"></script>
+	<script src="bower_components/g/dist/G.min.js"></script>
+</head>
+<body>
+  <!-- Nav bar starts here -->
+  <div class="header">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="col-md-4">    
+          <img src="film.jpg" class="img-responsive" alt = "Logo"/ style="width: 12%; height: 10%;">
+        </div>
+        <div class="col-md-4">
+          <label for="header_name" class="banner-display">Indian Movie Theatres</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Body part starts here -->
+  <div class="container-fluid" id="test">
+  	<div class = "heading-box">
+	  	<div class="row">
+	  		<div class="col-md-12">
+	  			<div class="panel panel-default" style="height: 758px;">
+	  				<div class="panel-heading" id="color_test">Select State
+              <select class="dropdown_style" id="state_select" style="cursor: pointer;">
+              	<option>Select State</option>
+              </select>
+            </div>
+            <div class="col-md-6 border_right">
+            	<div class="panel-body">
+				  			<svg viewBox="-50 0 900 1000" id="map-svg" width="600px" height="50%" preserveAspectRatio="xMinYMin meet">
+				  				<g id="map-path"></g>
+				  			</svg>
+						  </div>
+            </div>
+            <div class="col-md-6">
+            	<div class="panel-body">
+            		<svg class="chart"></svg>
+				  			<!-- <svg viewBox="-50 0 900 1000" id="map-svg" width="600px" height="50%" preserveAspectRatio="xMinYMin meet">
+				  				<g id="map-path"></g> -->
+				  			</svg>
+						  </div>
+            </div>
+	  			</div>
+	  		</div>
+	  	</div>
+  	</div>
+  </div>
+</body>
+<script src="main.js"></script>
+<script type="text/javascript">
+
+  // $('#state_select').on('change', function () {
+  //   var state_name = $(this).val(); // get selected value
+  //   if (state_name) { // require a URL
+  //   	mapify(state_name);
+  //       // window.location.href = window.location.origin + '?state='+ state_name;
+  //   }
+  //   return false;
+  // });
+
+
+	$(document).ready(function(){
+	  // var args = G.url.parse(window.location.href);
+	  // var state = args.searchKey['state'] || 'Select State'
+	  // $("#state_select").append('<option>'+"All"+'</option>')
+	  var state = 'Select State'
+	  $("#state_select option").slice(0,1).text(state)
+	  mapify(state);
+
+		d3.csv("indian-movie-theatres.csv", function(err, data){
+	 		  var data = {
+					  labels: [	
+					    'resilience', 'maintainability', 'accessibility',
+					    'uptime', 'functionality', 'impact'
+					  ],
+					  series: [
+					    {
+					      label: 'Avg Ticket Price',
+					      values: [4, 8, 15, 16, 23, 42]
+					    },
+					    {
+					      label: 'Multiplex',
+					      values: [12, 43, 22, 11, 73, 25]
+					    },
+					    {
+					      label: 'Single Screen',
+					      values: [31, 28, 14, 8, 15, 102]
+					    },
+					    {
+					      label: 'screens',
+					      values: [10, 20, 30, 40, 50, 60]
+					    },]
+					};
+		 		// barChart(data)
+		 });
+
+		// $('#state_select').on('change', function () {
+	 //    var state_name = $(this).val(); // get selected value
+	 //    if (state_name) { // require a URL
+	 //    	mapify(state_name);
+	 //    }
+	 //    return false;
+	 //  });
+
+  })
+</script>
+</html>

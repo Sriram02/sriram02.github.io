@@ -1,0 +1,27 @@
+{
+  "name": "jsutils",
+  "authors": [
+    "Vijay Yellepeddi <vijay.yellepeddi@gramener.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "lodash": "",
+    "jquery": "",
+    "d3": "",
+    "sweetalert": "",
+    "font-awesome": "",
+    "bootstrap-datepicker": "",
+    "moment": ""
+  }
+}
+
