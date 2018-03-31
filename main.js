@@ -24,26 +24,31 @@ $(document).ready(function() {
 
 		data = {
 				labels: Object.keys(state_transition),
-				series: Object.keys(state_transition).map(function(region) {
-					var seriesObj = {
-						"label": [],
-						"values": []
-					}
-
-					seriesObj.label.push(region)
-					seriesObj.values.push(Object.values(state_transition[region]['Multiplex']).reduce((a, b) => Number(a) + Number(b), 0))
-					seriesObj.values.push(Object.values(state_transition[region]['Single Screen']).reduce((a, b) => Number(a) + Number(b), 0))
-					seriesObj.values.push(Object.values(state_transition[region]['Screens']).reduce((a, b) => Number(a) + Number(b), 0))
-
-					// Object.keys(state_transition[region]).map(function(label) {
-					// 	return { "label": label, "values": Object.values(state_transition[region][label])}
-					// })
-
-					return seriesObj
-				})
+				series: loadSeries(state_transition)
 			}
 		barChart(data)
 	})
+
+	function loadSeries(data) {
+		var series = []
+		var groupedData = []
+		Object.keys(data).map(function(region, index) {
+			for(var key in state_transition[region]) {
+				if(!groupedData[key]) groupedData[key] = []
+				groupedData[key].push(Object.values(state_transition[region][key]).reduce((a, b) => Number(a) + Number(b), 0))
+				//console.log(key, Object.values(state_transition[region][key]).reduce((a, b) => Number(a) + Number(b), 0))
+			}
+		})
+
+		for(var label in groupedData) {
+			series.push({
+				label: label,
+				values: groupedData[label]
+			})
+		}
+
+		return series
+	}
 
 	$('#state_select').change(function() {
 		var region = $(this).val()
@@ -52,23 +57,7 @@ $(document).ready(function() {
 		if(region == '') {
 			data = {
 				labels: Object.keys(state_transition),
-				series: Object.keys(state_transition).map(function(region) {
-					var seriesObj = {
-						"label": [],
-						"values": []
-					}
-
-					seriesObj.label.push(region)
-					seriesObj.values.push(Object.values(state_transition[region]['Multiplex']).reduce((a, b) => Number(a) + Number(b), 0))
-					seriesObj.values.push(Object.values(state_transition[region]['Single Screen']).reduce((a, b) => Number(a) + Number(b), 0))
-					seriesObj.values.push(Object.values(state_transition[region]['Screens']).reduce((a, b) => Number(a) + Number(b), 0))
-
-					// Object.keys(state_transition[region]).map(function(label) {
-					// 	return { "label": label, "values": Object.values(state_transition[region][label])}
-					// })
-
-					return seriesObj
-				})
+				series: loadSeries(state_transition)
 			}
 		} else {
 			data = {
@@ -79,7 +68,14 @@ $(document).ready(function() {
 			}
 		}
 
+		data["labels"] = data["labels"].slice(0,10)
+
+		for(var key in data["series"]) {
+			data["series"][key]["values"] = data["series"][key]["values"].slice(0,10)
+		}
+
 		console.log(data)
+
 		barChart(data);
 		mapify(region);
 	})
