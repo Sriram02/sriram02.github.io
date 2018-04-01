@@ -12,21 +12,15 @@ function mapify(state) {
         .height(980)
         .shape(toposhape)
     var svg = d3.select('#map-path');
-    // svg.selectAll('*').remove();
     gmap.map(svg)
         .attr('fill', function(d){
-          var colorCode = '#CCC'
+          var colorCode = '#CCC';
           if(dummy[state] && d["properties"]["ST_NM"].toLowerCase() === dummy[state].toLowerCase()) {
-            colorCode = '#4F4F85'
+            colorCode = '#4F4F85';
           } else if(!dummy[state] && (dummy_data.indexOf(d["properties"]["ST_NM"].toLowerCase()) != -1)) {
-            colorCode = '#4F4F85' 
-            // for (i = 0; i <= dummy_data.length; i++){
-            //   console.log(dummy_data[2], "DDD")
-            //   return d["properties"]["ST_NM"].toLowerCase() === dummy_data[i].toLowerCase() ? "#4F4F85" : "#CCC";
-            // }
+            colorCode = '#4F4F85';
           }
-          return colorCode
-          //return d["properties"]["ST_NM"].toLowerCase() === dummy[state].toLowerCase() ? "#4F4F85" : "#CCC";
+          return colorCode;
         })
         .attr('stroke', '#fff')
         .attr('stroke-width', '1px')
