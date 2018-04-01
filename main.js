@@ -15,7 +15,7 @@ $(document).ready(function() {
 			state_transition[theaters.city]['Screens'][theaters.theatre_name] = theaters.no_screens;
 		})
 
-		var selectStateOption = "<option value=''>All</option>"
+		var selectStateOption = "<option value=''>All Cities</option>"
 		Object.keys(state_transition).forEach(function(region) {
 			selectStateOption += "<option value='"+region+"'>"+region+"</option>"
 		})
@@ -27,9 +27,10 @@ $(document).ready(function() {
 				series: loadSeries(state_transition)
 			}
 		barChart(data);
-		var state = 'Select State';
+		var state = 'All Cities';
 	  $("#state_select option").slice(0,1).text(state)
 	  mapify(state);
+	  $("#map_text").html("<strong> All Cities </strong>" + " - Theater Wise Analytics on Screens");
 	})
 
 	function loadSeries(data) {
@@ -54,7 +55,7 @@ $(document).ready(function() {
 	}
 
 	$('#state_select').change(function() {
-		var region = $(this).val()
+		var region = $(this).val();
 		var data = {}
 
 		if(region == '') {
@@ -62,6 +63,7 @@ $(document).ready(function() {
 				labels: Object.keys(state_transition),
 				series: loadSeries(state_transition)
 			}
+			$("#map_text").html("<strong> All Cities </strong>" + " - Theater Wise Analytics on Screens");
 		} else {
 			data = {
 				labels: Object.keys(state_transition[region]['Multiplex']),
@@ -69,6 +71,7 @@ $(document).ready(function() {
 					return { "label": label, "values": Object.values(state_transition[region][label])}
 				})
 			}
+			$("#map_text").html("<strong>" + region + "</strong>" + " - Theater Wise Analytics on Screens");
 		}
 		//Slicing first 10 data points
 		data["labels"] = data["labels"].slice(0,9)
