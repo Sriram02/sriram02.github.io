@@ -15,7 +15,7 @@ $(document).ready(function() {
 			state_transition[theaters.city]['Screens'][theaters.theatre_name] = theaters.no_screens;
 		})
 
-		var selectStateOption = "<option value=''>Select State</option>"
+		var selectStateOption = "<option value=''>All</option>"
 		Object.keys(state_transition).forEach(function(region) {
 			selectStateOption += "<option value='"+region+"'>"+region+"</option>"
 		})
@@ -26,7 +26,10 @@ $(document).ready(function() {
 				labels: Object.keys(state_transition),
 				series: loadSeries(state_transition)
 			}
-		barChart(data)
+		barChart(data);
+		var state = 'Select State';
+	  $("#state_select option").slice(0,1).text(state)
+	  mapify(state);
 	})
 
 	function loadSeries(data) {
@@ -67,20 +70,14 @@ $(document).ready(function() {
 				})
 			}
 		}
-
-		data["labels"] = data["labels"].slice(0,10)
-
+		//Slicing first 10 data points
+		data["labels"] = data["labels"].slice(0,9)
 		for(var key in data["series"]) {
-			data["series"][key]["values"] = data["series"][key]["values"].slice(0,10)
+			data["series"][key]["values"] = data["series"][key]["values"].slice(0,9)
 		}
-
-		console.log(data)
-
 		barChart(data);
 		mapify(region);
 	})
-
-
 })
 
 

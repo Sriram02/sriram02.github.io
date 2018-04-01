@@ -50,20 +50,6 @@
 .border_right{
     border-right: 2px solid grey;
 }
-.btn {
-	font-size: 16px;
-	font-weight: bold;
-	color: #000000;
-	margin-left: -10px;
-    margin-right: -10px;
-}
-.text-modifier{
-	padding-left: 170px;
-    /*text-align:right;
-    color: #000000;
-    font-size: 16px;
-    font-weight: bold;*/
-}
 
 .heading-box {
     padding: 20px;
@@ -83,67 +69,17 @@
 	color: #FFFFFF;
 	font-weight: bold;
 	font-size: 20px;
-    height: 40px;
-    padding: 5px;
-    padding-left: 20px;
+  height: 40px;
+  padding: 5px;
+  padding-left: 20px;
 }
 
 .dropdown_style {
-    width: 231.78px;
-    height: 30px;
-    font-size: 18px;
-    color: #212121;
-    border-radius: 3px;
-    padding-top: 7px;
-    margin-left: 8px;
-}
-
-#tp_tc {
-    margin-left: 50px;
-}
-
-.text_svg {
-    font-size: 14px;
-    color: #2F2F2F;
-}
-
-table {
-    margin: 0 auto;
-}
-
-td {
-    width: 50%;
-}
-
-.p_first {
-    float: right;
-    margin-top: -50px;
-    margin-right: 80px;
-    font-size: 20px;
-    color: #2F2F2F;
-}
-
-.p_second {
-    float: right;
-    margin-top: -20px;
-    margin-right: 80px;
-    font-size: 14px;
-    color: #2F2F2F;
-}
-
-.cc_img {
-    margin-left: 20px;
-    margin-top: 20px;
-}
-
-.num_style {
-    font-size: 20px;
-    color: #2F2F2F;
-    padding-top: 10px;
-    padding-left: 15px;
-}
-
-#footer_style {
-    margin-left: -10px;
-    margin-top: -25px;
+  width: 231.78px;
+  height: 30px;
+  font-size: 18px;
+  color: #212121;
+  border-radius: 3px;
+  padding-top: 7px;
+  margin-left: 8px;
 }

@@ -38,9 +38,8 @@
 	  	<div class="row">
 	  		<div class="col-md-12">
 	  			<div class="panel panel-default" style="height: 758px;">
-	  				<div class="panel-heading" id="color_test">Select State
+	  				<div class="panel-heading" id="color_test">Select City
               <select class="dropdown_style" id="state_select" style="cursor: pointer;">
-              	<option>Select State</option>
               </select>
             </div>
             <div class="col-md-6 border_right">
@@ -52,10 +51,10 @@
             </div>
             <div class="col-md-6">
             	<div class="panel-body">
-            		<svg class="chart"></svg>
-				  			<!-- <svg viewBox="-50 0 900 1000" id="map-svg" width="600px" height="50%" preserveAspectRatio="xMinYMin meet">
-				  				<g id="map-path"></g> -->
-				  			</svg>
+            		<div>
+            			<p style="color: #4F4F85;">City and Theater-Wise Analytics on Screens</p>
+            			<svg class="chart"></svg>
+						  	</div>
 						  </div>
             </div>
 	  			</div>
@@ -65,61 +64,4 @@
   </div>
 </body>
 <script src="main.js"></script>
-<script type="text/javascript">
-
-  // $('#state_select').on('change', function () {
-  //   var state_name = $(this).val(); // get selected value
-  //   if (state_name) { // require a URL
-  //   	mapify(state_name);
-  //       // window.location.href = window.location.origin + '?state='+ state_name;
-  //   }
-  //   return false;
-  // });
-
-
-	$(document).ready(function(){
-	  // var args = G.url.parse(window.location.href);
-	  // var state = args.searchKey['state'] || 'Select State'
-	  // $("#state_select").append('<option>'+"All"+'</option>')
-	  var state = 'Select State'
-	  $("#state_select option").slice(0,1).text(state)
-	  mapify(state);
-
-		d3.csv("indian-movie-theatres.csv", function(err, data){
-	 		  var data = {
-					  labels: [	
-					    'resilience', 'maintainability', 'accessibility',
-					    'uptime', 'functionality', 'impact'
-					  ],
-					  series: [
-					    {
-					      label: 'Avg Ticket Price',
-					      values: [4, 8, 15, 16, 23, 42]
-					    },
-					    {
-					      label: 'Multiplex',
-					      values: [12, 43, 22, 11, 73, 25]
-					    },
-					    {
-					      label: 'Single Screen',
-					      values: [31, 28, 14, 8, 15, 102]
-					    },
-					    {
-					      label: 'screens',
-					      values: [10, 20, 30, 40, 50, 60]
-					    },]
-					};
-		 		// barChart(data)
-		 });
-
-		// $('#state_select').on('change', function () {
-	 //    var state_name = $(this).val(); // get selected value
-	 //    if (state_name) { // require a URL
-	 //    	mapify(state_name);
-	 //    }
-	 //    return false;
-	 //  });
-
-  })
-</script>
 </html>
